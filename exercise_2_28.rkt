@@ -12,15 +12,14 @@
       ))
 
 (define (fringe L)
- (append
-   (if (list? (car L))
-      (car L)
-      (append (fringe (car L)) (fringe (cdr L))))
-  (if (list? (cdr L))
-      (cdr L)
-      (append (fringe (car L)) (fringe (cdr L))))))
+  (cond  ((null? L )nil)
+       ((not (pair? (car L))) L)
+      (else (append (fringe (car L)) (fringe (cdr L))))))
 
-(define L1 (list (list 1 2) (list 3 4)))
+(define L1 (list (list (list 1 2) (list 3 4))
+                 (list (list 1 2) (list 3 4))))
 
 (list?  (cdr L1))
 (cdr L1)
+
+(fringe L1)
