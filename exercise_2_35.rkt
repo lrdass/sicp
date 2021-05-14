@@ -19,3 +19,8 @@
        (fringe t)))
 
 (count-leaves (list (list (list 1 2) (list 3 4)) (list 5 6)))
+
+
+(define (count-leaves t)
+  (acc + 0 
+    (map (lambda (x) 1) (fringe t))))
