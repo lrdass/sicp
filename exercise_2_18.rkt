@@ -34,3 +34,11 @@
 ;  (if (last? L)
 ;      (car L)
 ;      (cons (reverse (cdr L)) (car L))))
+
+(define (reverse seq)
+  (def (iter items result)
+    (if (null? seq)
+      result
+      (iter (cdr seq)
+            (cons (car seq) result))))
+   (iter seq nil))
