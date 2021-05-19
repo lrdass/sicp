@@ -4,8 +4,16 @@
       init
       (op (car seq) (fold-right op init (cdr seq)))))
 
+(define (fold-left op init seq)
+  (define (iter result rest)
+    (if(null? rest)
+       result
+       (iter (op result (car rest))
+             (cdr rest))))
+  (iter init seq))
+
 (define (reverse seq)
-  (fold-right
+  (fold-left
    (lambda (x y)
      (display "x: ")
      (display x)
@@ -13,9 +21,10 @@
      (display "y: ")
      (display y)
      (newline)
-     (append y (list x))
+     (append (list y) x)
    )
    nil
    seq))
 
 (reverse (list 1 2 3))
+;(fold-left + 0 (list 1 2 3))
