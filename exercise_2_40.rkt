@@ -29,8 +29,12 @@
 (filter (lambda(pair) (not (pairs-are-equal? pair (pair-permutation pair))))
         (list (list 1 2) (list 3 4) (list 2 1)))
 
-(filter (lambda (pair)(not (pairs-are-equal? pair (pair-permutation pair))))
-        (flatmap (lambda (i)
-                   (map (lambda(j) (list i j))
-                        (enumerate 1 19)))
-                 (enumerate 2 20)))
+(define (remove item seq)
+  (filter (lambda (x) (not (= x item))) seq))
+
+(define (unique-pairs n)
+(flatmap (lambda(i)
+             (map (lambda(j) (list i j))
+                  (enumerate 1 (- i 1))))
+           (enumerate 1 n)))
+(unique-pairs 4)
