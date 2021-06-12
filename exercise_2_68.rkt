@@ -44,3 +44,10 @@
 (make-leaf 'C 1)))))
 
 (encode-symbol 'A sample-tree)
+
+(define (encode message tree)
+  (if (null? message)
+      '()
+      (append (encode-symbol (car message) tree)
+            (encode (cdr message) tree))))
+(encode '(A D A B B C A) sample-tree)
